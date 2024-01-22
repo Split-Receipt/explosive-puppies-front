@@ -1,7 +1,7 @@
 export default function AuthPage() {
   return (
     <>
-      <h1>Страница авторизации</h1>
+      <h1>Страница лобби</h1>
     </>      
   );
 };
