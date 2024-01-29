@@ -1,0 +1,49 @@
+@use '../styles/variables.module.scss' as *;
+
+.auth {
+    display: flex;
+    flex-direction: column;
+    gap: 150px;
+
+    width: 500px;
+
+    @media (min-width: 768px) {
+        gap: 200px;
+    }
+
+    &Wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin-top: 30px;
+    }
+
+    &Title {
+        text-align: center
+    }
+
+    &Content {
+        padding: 20px 0;
+        border: 3px solid $aquamarine-crayola;
+
+        &Wrapper {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            gap: 25px;
+    
+            width: 50%;
+            margin: 0 auto;
+        }
+    }
+
+    &Input {
+        border-bottom: 2px solid black;
+    }
+
+    &Link {
+        color: $aquamarine-crayola;
+    }
+}
+  
