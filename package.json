@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@mantine/core": "^7.4.2",
+    "@mantine/form": "^7.5.0",
     "@mantine/hooks": "^7.4.2",
+    "axios": "^1.6.7",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18"

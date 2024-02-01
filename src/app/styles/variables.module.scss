@@ -1,6 +1,28 @@
 // Colors
+$transparent: transparent;
+$black: #000;
+$white: #fff;
+$aquamarine-crayola: #6ae4cd;
+$downy: #5fcdb9;
+$yellow-orange: #fdbc3b;
+$red-orange: #fc401e;
 
-$aquamarine-crayola: #0c8599;
+$auth-border: $aquamarine-crayola;
+$auth-input-border: $black;
+$auth-input-underline-focus: $downy;
+$auth-link-text: $downy;
+$auth-button-text: $black;
+$auth-button-primary-bg: $aquamarine-crayola;
+$auth-button-primary-bg-hover: $downy;
+$auth-button-transparent: $aquamarine-crayola;
+$auth-button-transparent-text-hover: $downy;
+$auth-title-red: $red-orange;
+$auth-title-yellow: $yellow-orange;
+
+:export {
+    authButtonPrimary: $auth-button-primary-bg;
+    authButtonTransparent: $auth-button-transparent;
+}
 
 // Breakpoints
 $screen-tablet: '(min-width: 768px)';

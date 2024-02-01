@@ -1,42 +1,106 @@
-import styles from './styles.module.scss'
-import { Input, Button } from '@mantine/core'
-import Link from 'next/link'
+'use client'
+
+import styles from './styles.module.scss';
+import variables from '../styles/variables.module.scss';
+import { useState } from 'react';
+import { useForm } from '@mantine/form';
+import { Input, TextInput, Button, MantineProvider, createTheme, Box, em } from '@mantine/core';
+import { rubikWetPaint } from '../styles/fonts';
+import { useMediaQuery } from '@mantine/hooks';
+import httpInstance from '@/class/http';
+
+const theme = createTheme({
+  components: {
+    Input: Input.extend({ classNames: styles }),
+    Button: Button.extend({ classNames: styles }),
+  }
+});
 
 export default function AuthPage() {
+  const [showComponent, setShowComponent] = useState(true);
+  const mobileScreen = useMediaQuery(`(max-width: ${em(768)})`);
+
+  const lobbyEntryRequest = async () => {
+    const {userName, lobbyId} = form.values;
+    const data = await httpInstance.post('/auth', {
+      lobbyId: lobbyId,
+      userName: userName
+    });
+  };
+
+  const form = useForm({
+    validateInputOnChange: true,
+    initialValues: {
+      userName: '',
+      lobbyId: ''
+    },
+    validate: {
+      userName: (value) => (value.length === 0 
+                              ? 'Пожалуйста, введите имя'
+                              : value.length < 2
+                              ? 'Ваше имя слишком короткое'
+                              : value.length > 15
+                              ? 'Имя не может содержать более 15 символов'
+                              : null
+                            ),
+      lobbyId: (value) => (/[a-zA-Z]+/.test(value) && value.length === 5 ? null : 'Идентификатор лобби состоит из 5 символов в диапазоне a-Z'),
+    }
+  });
+
   return (
     <>
       <div className={styles.authWrapper}>
         <div className={styles.auth}>
-          <h1 className={styles.authTitle}>Страница авторизации</h1>
+          <h1
+            className={`${rubikWetPaint.className} ${styles.authTitle}`}
+          ><span className={styles.authTitleColor}>Взрывные котята</span></h1>
 
           <div className={styles.authContent}>
-            <div className={styles.authContentWrapper}>
-              <Input
-                className={styles.authInput}
-                variant="unstyled"
-                size="xl"
-                placeholder="Ввведите имя"
-              />
-              <Input
-                className={styles.authInput}
-                variant="unstyled"
-                size="xl"
-                placeholder="Ввведите идентификатор лобби"
-              />
+            <Box
+              component="form"
+              className={styles.authContentWrapper}
+              onSubmit={form.onSubmit(() => {})}
+            >
+              <MantineProvider theme={theme}>
+                <TextInput
+                  variant="underline"
+                  size={mobileScreen ? 'xs' : 'md'}
+                  placeholder="Ввведите имя"
+                  withErrorStyles={false}
+                  {...form.getInputProps('userName')}
+                />
 
-              <Button
-                className={styles.authButton}
-                variant="filled"
-                color="cyan"
-                fullWidth
-                size="lg"
-              >
-                Прыгнуть в игру
-              </Button>
+                {showComponent && 
+                <TextInput
+                  variant="underline"
+                  size={mobileScreen ? 'xs' : 'md'}
+                  placeholder="Ввведите идентификатор лобби"
+                  withErrorStyles={false}
+                  {...form.getInputProps('lobbyId')}
+                />}
 
-              <div>Или <Link href="/lobby" className={styles.authLink}>создайте лобби</Link></div>
-            </div>
+                <Button
+                  color={variables.authButtonPrimary}
+                  variant="buttonPrimary"
+                  fullWidth
+                  size={mobileScreen ? 'xs' : 'lg'}
+                  type="submit"
+                  onClick={()=> lobbyEntryRequest()}
+                >{showComponent ? "Прыгнуть в игру" : "Создать лобби"}</Button>
+              </MantineProvider>
+
+              <div>Или
+                <Button
+                  className={styles.authButtonTransparent}
+                  color={variables.authButtonTransparent}
+                  variant="transparent"
+                  size="compact-md"
+                  onClick={() => setShowComponent(!showComponent)}
+                >{showComponent ? "создайте лобби" : "прыгнуть в игру"}</Button>
+              </div>
+            </Box>
           </div>
+          
         </div>
       </div>
     </>      

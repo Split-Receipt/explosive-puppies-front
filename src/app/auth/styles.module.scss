@@ -3,11 +3,11 @@
 .auth {
     display: flex;
     flex-direction: column;
-    gap: 150px;
+    gap: 100px;
 
     width: 500px;
 
-    @media (min-width: 768px) {
+    @media #{$screen-tablet} {
         gap: 200px;
     }
 
@@ -20,12 +20,26 @@
     }
 
     &Title {
-        text-align: center
+        font-size: 30px;
+        text-align: center;
+
+        margin: 0 20px;
+
+        @media (min-width: 768px) {
+            font-size: 45px;
+        }
+
+        &Color {
+            color: transparent;
+            background-clip: text;
+            background-image: linear-gradient($auth-title-yellow, $auth-title-red);
+        }
     }
 
     &Content {
+        margin: 0 20px;
         padding: 20px 0;
-        border: 3px solid $aquamarine-crayola;
+        border: 3px solid $auth-border;
 
         &Wrapper {
             display: flex;
@@ -33,17 +47,58 @@
             text-align: center;
             gap: 25px;
     
-            width: 50%;
+            width: 60%;
             margin: 0 auto;
         }
     }
 
-    &Input {
-        border-bottom: 2px solid black;
+    &Button {
+        &Transparent {
+            font-weight: 500;
+
+            padding: 0 0 1px 5px;
+
+            &:hover {
+                color: $auth-button-transparent-text-hover;
+            }
+        }
     }
 
     &Link {
-        color: $aquamarine-crayola;
+        color: $auth-link-text;
     }
 }
-  
+
+.root {
+    &[data-variant="buttonPrimary"] {
+        background-color: $auth-button-primary-bg;
+        color: $auth-button-text;
+        font-weight: 500;
+
+        &:hover {
+            background-color: $auth-button-primary-bg-hover;
+        }
+    }
+}
+
+.input {
+    &[data-variant='underline'] {
+        text-align: center;
+
+        border: none;
+        border-bottom: 2px solid $auth-input-border;
+        border-radius: 0;
+        padding-left: 0;
+        padding-right: 0;
+
+        text-overflow: ellipsis;
+        
+        &:placeholder-shown {
+            text-overflow: ellipsis;
+        }
+
+        &:focus {
+            border-bottom: 2px solid $auth-input-underline-focus;
+        }
+    }
+}
