@@ -4,6 +4,7 @@ $black: #000;
 $white: #fff;
 $aquamarine-crayola: #6ae4cd;
 $downy: #5fcdb9;
+$malibu: #59c5f6;
 $yellow-orange: #fdbc3b;
 $red-orange: #fc401e;
 
@@ -18,6 +19,8 @@ $auth-button-transparent: $aquamarine-crayola;
 $auth-button-transparent-text-hover: $downy;
 $auth-title-red: $red-orange;
 $auth-title-yellow: $yellow-orange;
+
+$deck-bg: $malibu;
 
 :export {
     authButtonPrimary: $auth-button-primary-bg;

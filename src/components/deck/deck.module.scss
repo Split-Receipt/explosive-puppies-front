@@ -1,0 +1,24 @@
+@use '../../app/styles/variables.module.scss' as *;
+
+.deck {
+	display: inline-block;
+
+	width: 55px;
+	height: 70px;
+	margin: 10px;
+
+	background-color: $deck-bg;
+	border-radius: 10px;
+
+	cursor: pointer;
+
+	&CardCount {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		font-weight: 600;
+
+		height: 100%;
+	}
+}
