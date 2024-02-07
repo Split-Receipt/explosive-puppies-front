@@ -1,2 +1,8 @@
 @use '../styles/variables.module.scss' as *;
 
+.lobby {
+    &Players {
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+}

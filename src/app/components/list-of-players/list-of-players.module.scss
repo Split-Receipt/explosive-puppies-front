@@ -1,0 +1,7 @@
+@use '../../styles/variables.module.scss' as *;
+
+.players {
+    display: flex;
+    row-gap: 15px;
+    flex-direction: column;
+}
