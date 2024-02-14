@@ -13,7 +13,8 @@ export const AuthApiModule = {
    * @param {LoginUserParams} params - Параметры для входа пользователя
    * @return {Promise<PlayerAuthResponse>} Ответ, содержащий информацию об аутентификации игрока
    */
-  createLobbyAndLogin: (params: LoginUserParams): Promise<PlayerAuthResponse> => {
-    return api.post('/auth', params)
+   createLobbyAndLogin: async (params: LoginUserParams): Promise<PlayerAuthResponse> => {
+    const response = await api.post('/auth', params)
+    return response.data;
   }
 }

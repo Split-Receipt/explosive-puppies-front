@@ -1,17 +1,18 @@
 'use client'
 
-import styles from './styles.module.scss';
-import variables from '../styles/variables.module.scss';
+import styles from '@/app/auth/styles.module.scss';
+import variables from '@/app/styles/variables.module.scss';
 import { useState } from 'react';
 import { useForm } from '@mantine/form';
-import { Input, TextInput, Button, MantineProvider, createTheme, Box, em } from '@mantine/core';
-import { rubikWetPaint } from '../styles/fonts';
+import { TextInput, Button, MantineProvider, createTheme, Box, em } from '@mantine/core';
+import { rubikWetPaint } from '@/app/styles/fonts';
 import { useMediaQuery } from '@mantine/hooks';
-import httpInstance from '@/class/http';
+import { AuthApiModule } from '@/app/auth/api/auth';
+import { useRouter } from 'next/navigation';
 
 const theme = createTheme({
   components: {
-    Input: Input.extend({ classNames: styles }),
+    TextInput: TextInput.extend({ classNames: styles }),
     Button: Button.extend({ classNames: styles }),
   }
 });
@@ -19,13 +20,25 @@ const theme = createTheme({
 export default function AuthPage() {
   const [showComponent, setShowComponent] = useState(true);
   const mobileScreen = useMediaQuery(`(max-width: ${em(768)})`);
+  const router = useRouter();
 
   const lobbyEntryRequest = async () => {
     const {userName, lobbyId} = form.values;
-    const data = await httpInstance.post('/auth', {
-      lobbyId: lobbyId,
-      userName: userName
-    });
+    if (showComponent) {
+      if (form.isValid()) {
+        const data = await AuthApiModule.createLobbyAndLogin({ lobbyId, userName });
+        localStorage.setItem('token', JSON.stringify(data.token));
+  
+        router.push('/lobby');
+      }
+    } else {
+      if (form.isValid('userName')) {
+        const data = await AuthApiModule.createLobbyAndLogin({ lobbyId, userName });
+        localStorage.setItem('token', JSON.stringify(data.token));
+
+        router.push('/lobby');
+      }
+    }
   };
 
   const form = useForm({
@@ -53,7 +66,7 @@ export default function AuthPage() {
         <div className={styles.auth}>
           <h1
             className={`${rubikWetPaint.className} ${styles.authTitle}`}
-          ><span className={styles.authTitleColor}>Взрывные котята</span></h1>
+          ><span className={styles.authTitleColor}>Страница авторизации</span></h1>
 
           <div className={styles.authContent}>
             <Box
