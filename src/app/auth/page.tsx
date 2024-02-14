@@ -66,7 +66,7 @@ export default function AuthPage() {
         <div className={styles.auth}>
           <h1
             className={`${rubikWetPaint.className} ${styles.authTitle}`}
-          ><span className={styles.authTitleColor}>Страница авторизации</span></h1>
+          ><span className={styles.authTitleColor}>Взрывные котята</span></h1>
 
           <div className={styles.authContent}>
             <Box
