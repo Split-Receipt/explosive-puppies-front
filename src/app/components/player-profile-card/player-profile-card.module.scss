@@ -1,16 +1,31 @@
 @use '../../styles/variables.module.scss' as *;
 
 .player {
-    display: flex;
-    border: 2px solid $border-kub;
-    padding: 5px;
-    width: 250px;
+        display: flex;
+        border: 2px solid $border-kub;
+        align-items: center;
+        opacity: 0.5;
 
+    &Horizontal {
+        padding: 5px;
+        width: 250px;
+    }
+    &Vertical {
+        flex-direction: column;
+        width: 105px;
+        padding: 5px;
+    }
     &Img {
         display: flex;
         background-color: $kubick-blue;
         width: 70px;
         height: 70px;
-        margin-right: 10px;
+
+        &Horizontal {
+            margin-right: 10px;
+        }
+        &Vertical {
+            margin-bottom: 10px;
+        }
     }
 }
