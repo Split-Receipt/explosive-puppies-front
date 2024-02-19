@@ -1,6 +1,6 @@
 import api from '@utils/api'
 import { LoginUserParams, PlayerAuthResponse } from '@utils/types/index'
-
+import { AxiosResponse } from 'axios'
 
 export const AuthApiModule = {
    /**
@@ -13,8 +13,7 @@ export const AuthApiModule = {
    * @param {LoginUserParams} params - Параметры для входа пользователя
    * @return {Promise<PlayerAuthResponse>} Ответ, содержащий информацию об аутентификации игрока
    */
-   createLobbyAndLogin: async (params: LoginUserParams): Promise<PlayerAuthResponse> => {
-    const response = await api.post('/auth', params)
-    return response.data;
+   createLobbyAndLogin: async (params: LoginUserParams): Promise<AxiosResponse<PlayerAuthResponse>> => {
+    return api.post('/auth', params)
   }
 }

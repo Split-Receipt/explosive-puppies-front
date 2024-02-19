@@ -23,21 +23,26 @@ export default function AuthPage() {
   const router = useRouter();
 
   const lobbyEntryRequest = async () => {
-    const {userName, lobbyId} = form.values;
-    if (showComponent) {
-      if (form.isValid()) {
-        const data = await AuthApiModule.createLobbyAndLogin({ lobbyId, userName });
-        localStorage.setItem('token', JSON.stringify(data.token));
-  
-        router.push('/lobby');
-      }
-    } else {
-      if (form.isValid('userName')) {
-        const data = await AuthApiModule.createLobbyAndLogin({ lobbyId, userName });
-        localStorage.setItem('token', JSON.stringify(data.token));
+    const { userName, lobbyId } = form.values;
+    const responce = await AuthApiModule.createLobbyAndLogin({ lobbyId: lobbyId, userName: userName });
+    const { token } = responce.data
 
-        router.push('/lobby');
-      }
+    try {
+      if (showComponent) {
+        if (form.isValid()) {
+          localStorage.setItem('token', JSON.stringify(token));
+    
+          router.push('/lobby');
+        }
+      } else {
+        if (form.isValid('userName')) {
+          localStorage.setItem('token', JSON.stringify(token));
+         
+          router.push('/lobby');
+        }
+      };
+    } catch (error) {
+      console.log(error)
     }
   };
 
