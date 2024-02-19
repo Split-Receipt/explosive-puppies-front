@@ -1,7 +1,7 @@
 'use client'
 
-import styles from './styles-lobby.module.scss';
-import variables from '../styles/variables.module.scss';
+import styles from '@/app/lobby/styles-lobby.module.scss';
+import variables from '@/app/styles/variables.module.scss';
 import { Button, Text, MantineProvider, createTheme, em } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 
