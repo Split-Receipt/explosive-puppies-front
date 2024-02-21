@@ -1,11 +1,11 @@
-import styles from './styles-lobby.module.scss'
-import ListOfPlayers from '../components/list-of-players/list-of-players'
+import styles from '@/app/lobby/styles-lobby.module.scss'
+import ListOfPlayers from '@/app/components/list-of-players/list-of-players'
 
 export default function LobbyPage() {
   const players = [
-    {userName: 'Player #4', id: '15', avatar: '#'},
-    {userName: 'Player #5', id: '25', avatar: '#'},
-    {userName: 'Player #6', id: '555', avatar: '#'}
+    {userName: 'Игрок #4', id: '15', avatar: '#', status: 'Online'},
+    {userName: 'Игрок #5', id: '25', avatar: '#', status: 'Online'},
+    {userName: 'Игрок #6', id: '555', avatar: '#', status: 'Online'}
   ]
   return (
     <>

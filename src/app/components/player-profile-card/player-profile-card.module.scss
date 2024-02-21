@@ -1,10 +1,9 @@
-@use '../../styles/variables.module.scss' as *;
+@use '@/app/styles/variables.module.scss' as *;
 
 .player {
         display: flex;
         border: 2px solid $border-kub;
         align-items: center;
-        opacity: 0.5;
 
     &Horizontal {
         padding: 5px;
@@ -26,6 +25,16 @@
         }
         &Vertical {
             margin-bottom: 10px;
+        }
+    }
+    &Status {
+        opacity: 1;
+
+        &Online {
+            opacity: 1;
+        }
+        &Offline {
+            opacity: 0.5;
         }
     }
 }
