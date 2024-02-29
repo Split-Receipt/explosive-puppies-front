@@ -1,0 +1,40 @@
+@use '@/app/styles/variables.module.scss' as *;
+
+.player {
+        display: flex;
+        border: 2px solid $border-kub;
+        align-items: center;
+
+    &Horizontal {
+        padding: 5px;
+        width: 250px;
+    }
+    &Vertical {
+        flex-direction: column;
+        width: 105px;
+        padding: 5px;
+    }
+    &Img {
+        display: flex;
+        background-color: $kubick-blue;
+        width: 70px;
+        height: 70px;
+
+        &Horizontal {
+            margin-right: 10px;
+        }
+        &Vertical {
+            margin-bottom: 10px;
+        }
+    }
+    &Status {
+        opacity: 1;
+
+        &Online {
+            opacity: 1;
+        }
+        &Offline {
+            opacity: 0.5;
+        }
+    }
+}
