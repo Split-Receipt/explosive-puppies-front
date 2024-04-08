@@ -24,8 +24,9 @@ export default function AuthPage() {
 
   const lobbyEntryRequest = async () => {
     const { userName, lobbyId } = form.values;
-    const responce = await AuthApiModule.createLobbyAndLogin({ lobbyId: lobbyId, userName: userName });
-    const { token } = responce.data
+    const response = await AuthApiModule.createLobbyAndLogin({ lobbyId: lobbyId, userName: userName });
+    const { token } = response.data
+    console.log(response.data)
 
     try {
       if (showComponent) {
