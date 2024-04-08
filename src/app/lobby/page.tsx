@@ -4,6 +4,7 @@ import styles from '@/app/lobby/styles-lobby.module.scss';
 import variables from '@/app/styles/variables.module.scss';
 import { Button, Text, MantineProvider, createTheme, em } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import ListOfPlayers from '@/app/components/list-of-players/list-of-players'
 
 const theme = createTheme({
   components: {
@@ -12,6 +13,11 @@ const theme = createTheme({
 });
 
 export default function LobbyPage() {
+  const players = [
+    {userName: 'Игрок #4', id: '15', avatar: '#', status: 'Online'},
+    {userName: 'Игрок #5', id: '25', avatar: '#', status: 'Online'},
+    {userName: 'Игрок #6', id: '555', avatar: '#', status: 'Online'}
+  ]
   const mobileScreen = useMediaQuery(`(max-width: ${em(768)})`);
 
   return (
@@ -43,6 +49,7 @@ export default function LobbyPage() {
             </div>
           </div>
         </div>
+        <div className={styles.lobbyPlayers}><ListOfPlayers players={players}></ListOfPlayers></div>
       </div>
     </>      
   );

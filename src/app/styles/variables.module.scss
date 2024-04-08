@@ -1,4 +1,7 @@
 // Colors
+$aquamarine-crayola: #0c8599;
+$aquamarine-blue: #59c5f6;
+$aquamarine-green: #88d7c8;
 $transparent: transparent;
 $black: #000;
 $white: #fff;
@@ -32,3 +35,7 @@ $lobby-info: $mine-shaft;
 // Breakpoints
 $screen-tablet: '(min-width: 768px)';
 $screen-desktop: '(min-width: 1440px)';
+
+// Components
+$kubick-blue: $aquamarine-blue;
+$border-kub: $aquamarine-green;

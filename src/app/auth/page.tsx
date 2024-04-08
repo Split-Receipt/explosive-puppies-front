@@ -1,17 +1,18 @@
 'use client'
 
-import styles from './styles.module.scss';
-import variables from '../styles/variables.module.scss';
+import styles from '@/app/auth/styles.module.scss';
+import variables from '@/app/styles/variables.module.scss';
 import { useState } from 'react';
 import { useForm } from '@mantine/form';
-import { Input, TextInput, Button, MantineProvider, createTheme, Box, em } from '@mantine/core';
-import { rubikWetPaint } from '../styles/fonts';
+import { TextInput, Button, MantineProvider, createTheme, Box, em } from '@mantine/core';
+import { rubikWetPaint } from '@/app/styles/fonts';
 import { useMediaQuery } from '@mantine/hooks';
-import httpInstance from '@/class/http';
+import { AuthApiModule } from '@/app/auth/api/auth';
+import { useRouter } from 'next/navigation';
 
 const theme = createTheme({
   components: {
-    Input: Input.extend({ classNames: styles }),
+    TextInput: TextInput.extend({ classNames: styles }),
     Button: Button.extend({ classNames: styles }),
   }
 });
@@ -19,13 +20,31 @@ const theme = createTheme({
 export default function AuthPage() {
   const [showComponent, setShowComponent] = useState(true);
   const mobileScreen = useMediaQuery(`(max-width: ${em(768)})`);
+  const router = useRouter();
 
   const lobbyEntryRequest = async () => {
-    const {userName, lobbyId} = form.values;
-    const data = await httpInstance.post('/auth', {
-      lobbyId: lobbyId,
-      userName: userName
-    });
+    const { userName, lobbyId } = form.values;
+    const response = await AuthApiModule.createLobbyAndLogin({ lobbyId: lobbyId, userName: userName });
+    const { token } = response.data
+    console.log(response.data)
+
+    try {
+      if (showComponent) {
+        if (form.isValid()) {
+          localStorage.setItem('token', JSON.stringify(token));
+    
+          router.push('/lobby');
+        }
+      } else {
+        if (form.isValid('userName')) {
+          localStorage.setItem('token', JSON.stringify(token));
+         
+          router.push('/lobby');
+        }
+      };
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const form = useForm({
