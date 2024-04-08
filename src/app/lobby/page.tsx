@@ -20,11 +20,13 @@ const players = [
   {userName: 'Игрок #3', id: '555', avatar: '#', status: 'Online'}
 ];
 
+const lobbyId = 'TESTID';
+
 export default function LobbyPage() {
   const router = useRouter();
 
   const createGameRequest = async () => {
-    const response = await GameCreateApiModule.createGame({ players: players, lobbyId: 'test' });
+    const response = await GameCreateApiModule.createGame({ players: players, lobbyId: lobbyId });
     // router.push('/game');
     console.log(response.data);
   };
@@ -35,7 +37,11 @@ export default function LobbyPage() {
     <>
       <div className={styles.lobbyWrapper}>
         <div className={styles.lobby}>
-          <h1 className={styles.lobbyTitle}>Лобби</h1>
+          <div className={styles.lobbyHeader}>
+            <h1 className={styles.lobbyHeaderText}>Лобби</h1>
+            <h3 className={styles.lobbyHeaderCode}>Код лобби: { lobbyId }</h3>
+          </div>
+      
 
           <div className={styles.lobbyContent}>
             <div className={styles.lobbyPlayersList}>

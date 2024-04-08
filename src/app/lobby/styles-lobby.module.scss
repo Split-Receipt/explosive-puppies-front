@@ -12,13 +12,44 @@
         justify-content: center;
     }
 
-    &Title {
-        font-size: 30px;
-        font-weight: 500;
-        text-align: center;
+    &Header {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
 
         @media #{$screen-tablet} {
-            font-size: 45px;
+            flex-direction: row;
+            gap: 50px;
+        }
+
+        &Text {
+            font-size: 30px;
+            font-weight: 500;
+            text-align: center;
+
+            @media #{$screen-tablet} {
+                font-size: 45px;
+
+                text-align: end;
+                flex-basis: 60%;
+            }
+        }
+
+        &Code {
+            font-size: 16px;
+
+            display: flex;
+            align-items: center;
+            align-self: center;
+
+            height: 70px;
+            padding: 0 10px;
+
+            border: 2px solid $lobby-code-border;
+
+            @media #{$screen-tablet} {
+                font-size: 20px;
+            }
         }
     }
 
