@@ -4,7 +4,9 @@ import styles from '@/app/lobby/styles-lobby.module.scss';
 import variables from '@/app/styles/variables.module.scss';
 import { Button, Text, MantineProvider, createTheme, em } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import ListOfPlayers from '@/app/components/list-of-players/list-of-players'
+import ListOfPlayers from '@/app/components/list-of-players/list-of-players';
+import { GameCreateApiModule } from '@/app/lobby/api/loddy';
+import { useRouter } from 'next/navigation';
 
 const theme = createTheme({
   components: {
@@ -12,12 +14,21 @@ const theme = createTheme({
   }
 });
 
+const players = [
+  {userName: 'Игрок #1', id: '15', avatar: '#', status: 'Online'},
+  {userName: 'Игрок #2', id: '25', avatar: '#', status: 'Online'},
+  {userName: 'Игрок #3', id: '555', avatar: '#', status: 'Online'}
+];
+
 export default function LobbyPage() {
-  const players = [
-    {userName: 'Игрок #4', id: '15', avatar: '#', status: 'Online'},
-    {userName: 'Игрок #5', id: '25', avatar: '#', status: 'Online'},
-    {userName: 'Игрок #6', id: '555', avatar: '#', status: 'Online'}
-  ]
+  const router = useRouter();
+
+  const createGameRequest = async () => {
+    const response = await GameCreateApiModule.createGame({ players: players, lobbyId: 'test' });
+    // router.push('/game');
+    console.log(response.data);
+  };
+
   const mobileScreen = useMediaQuery(`(max-width: ${em(768)})`);
 
   return (
@@ -27,7 +38,9 @@ export default function LobbyPage() {
           <h1 className={styles.lobbyTitle}>Лобби</h1>
 
           <div className={styles.lobbyContent}>
-            <div className={styles.lobbyListPlayers}>Список игроков</div>
+            <div className={styles.lobbyPlayersList}>
+                <ListOfPlayers players={players}></ListOfPlayers>
+            </div>
             <div className={styles.lobbySection}>
               <Text
                 className={styles.lobbyInfo}
@@ -42,14 +55,14 @@ export default function LobbyPage() {
                   className={styles.lobbyButton}
                   color={variables.lobbyButtonPrimary}
                   variant="buttonPrimary"
-                  size={mobileScreen ? 'xs' : 'lg'}
+                  size={mobileScreen ? 'md' : 'lg'}
                   type="submit"
+                  onClick={()=> createGameRequest()}
                 >Начать игру</Button>
               </MantineProvider>
             </div>
           </div>
         </div>
-        <div className={styles.lobbyPlayers}><ListOfPlayers players={players}></ListOfPlayers></div>
       </div>
     </>      
   );

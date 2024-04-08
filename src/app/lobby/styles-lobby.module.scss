@@ -1,13 +1,6 @@
 @use '@/app/styles/variables.module.scss' as *;
 
 .lobby {
-    &Players {
-        margin-left: 20px;
-        margin-top: 20px;
-    }
-}
-
-.lobby {
     display: flex;
     flex-direction: column;
     gap: 50px;
@@ -17,8 +10,6 @@
     &Wrapper {
         display: flex;
         justify-content: center;
-
-        height: 100vh;
     }
 
     &Title {
@@ -44,8 +35,10 @@
         }
     }
     
-    &ListPlayers {
-        flex-basis: 40%;
+    &Players {
+        &List {
+            flex-basis: 40%;
+        }
     }
 
     &Section {
