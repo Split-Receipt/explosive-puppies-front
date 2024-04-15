@@ -78,6 +78,11 @@
         &:hover {
             background-color: $auth-button-primary-bg-hover;
         }
+
+        &:disabled,
+        &[data-disabled] {
+            opacity: 0.5;
+        }
     }
 }
 
