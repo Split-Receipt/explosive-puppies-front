@@ -7,6 +7,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import ListOfPlayers from '@/app/components/list-of-players/list-of-players';
 import { GameCreateApiModule } from '@/app/lobby/api/loddy';
 import { useRouter } from 'next/navigation';
+import useLobbyStore from '@/app/store/lobby';
 
 const theme = createTheme({
   components: {
@@ -23,12 +24,20 @@ const players = [
 const lobbyId = 'TESTID';
 
 export default function LobbyPage() {
+  let addIdGame = useLobbyStore((state) => state.addIdGame);
+
   const router = useRouter();
 
   const createGameRequest = async () => {
-    const response = await GameCreateApiModule.createGame({ players: players, lobbyId: lobbyId });
-    // router.push('/game');
-    console.log(response.data);
+    try {
+      const response = await GameCreateApiModule.createGame({ players: players, lobbyId: lobbyId });
+      const { id } = response.data;
+      addIdGame(id);
+
+      // router.push('/game');
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   const mobileScreen = useMediaQuery(`(max-width: ${em(768)})`);
