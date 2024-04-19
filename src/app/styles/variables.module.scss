@@ -22,6 +22,8 @@ $auth-button-transparent-text-hover: $downy;
 $auth-title-red: $red-orange;
 $auth-title-yellow: $yellow-orange;
 
+
+
 :export {
     authButtonPrimary: $auth-button-primary-bg;
     authButtonTransparent: $auth-button-transparent;
@@ -32,5 +34,5 @@ $screen-tablet: '(min-width: 768px)';
 $screen-desktop: '(min-width: 1440px)';
 
 // Components
-$kubick-blue: $aquamarine-blue;
-$border-kub: $aquamarine-green;
+$avatar-lobby: $aquamarine-blue;
+$border-lobby-player: $aquamarine-green;

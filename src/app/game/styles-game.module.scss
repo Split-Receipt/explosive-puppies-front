@@ -1,0 +1,46 @@
+@use '@/app/styles/variables.module.scss' as *;
+
+.game {
+
+    &Parts {
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        flex-basis: 80%;
+    }
+    
+    &TableWrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    &Players {
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+
+    &TableImage {
+        background: #009688;
+        width: 60vw;
+        height: 60vw;
+        display:flex;
+        position: relative;
+        border-radius: 50%;
+        
+        
+        @media #{$screen-desktop} {
+            min-width: 0;
+            min-height: 0;
+            max-width: 43vw;
+            max-height: 43vw;
+        }
+    }
+
+    &Footer {
+        height: 20vh;
+    }
+}

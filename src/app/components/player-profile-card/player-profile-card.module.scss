@@ -2,7 +2,7 @@
 
 .player {
         display: flex;
-        border: 2px solid $border-kub;
+        border: 2px solid $border-lobby-player;
         align-items: center;
 
     &Horizontal {
@@ -16,7 +16,7 @@
     }
     &Img {
         display: flex;
-        background-color: $kubick-blue;
+        background-color: $avatar-lobby;
         width: 70px;
         height: 70px;
 
