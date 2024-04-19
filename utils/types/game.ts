@@ -4,7 +4,7 @@ import { Card } from '@utils/types/card'
 
 export type GameParams = {
     id: string;
-  }
+}
   
 export interface Game extends GameParams {
     lobbyId: string;
@@ -15,8 +15,13 @@ export interface Game extends GameParams {
     moves: Player[] ;
     winner: Player | Card[];
     status: string;
-  }
+}
 
-export interface GameResponse extends Game {
+export type CreateGameParams = {
+    players: Player[];
+    lobbyId: string;
+}
 
-  }
+export interface GameResponse extends Game {}
+
+export interface GameResponse extends Game {}
