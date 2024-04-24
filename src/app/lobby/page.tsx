@@ -21,7 +21,7 @@ const players = [
   {userName: 'Игрок #3', id: '555', avatar: '#', status: 'Online'}
 ];
 
-const lobbyId = 'TESTID';
+const lobbyId = '';
 
 export default function LobbyPage() {
   let addIdGame = useLobbyStore((state) => state.addIdGame);
@@ -34,7 +34,7 @@ export default function LobbyPage() {
       const { id } = response.data;
       addIdGame(id);
 
-      // router.push('/game');
+      router.push('/game');
     } catch (error) {
       console.error(error)
     }
