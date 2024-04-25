@@ -1,38 +1,63 @@
 'use client'
 
-import styles from './styles.module.scss';
-import variables from '../styles/variables.module.scss';
+import styles from '@/app/auth/styles.module.scss';
+import variables from '@/app/styles/variables.module.scss';
 import { useState } from 'react';
-import { useForm } from '@mantine/form';
-import { Input, TextInput, Button, MantineProvider, createTheme, Box, em } from '@mantine/core';
-import { rubikWetPaint } from '../styles/fonts';
+import { hasLength, useForm } from '@mantine/form';
+import { TextInput, Button, MantineProvider, createTheme, Box, em } from '@mantine/core';
+import { rubikWetPaint } from '@/app/styles/fonts';
 import { useMediaQuery } from '@mantine/hooks';
-import httpInstance from '@/class/http';
+import { AuthApiModule } from '@/app/auth/api/auth';
+import { useRouter } from 'next/navigation';
+import useAuthStore from '@/app/store/auth';
 
 const theme = createTheme({
   components: {
-    Input: Input.extend({ classNames: styles }),
+    TextInput: TextInput.extend({ classNames: styles }),
     Button: Button.extend({ classNames: styles }),
   }
 });
 
 export default function AuthPage() {
-  const [showComponent, setShowComponent] = useState(true);
   const mobileScreen = useMediaQuery(`(max-width: ${em(768)})`);
+  
+  const [showInputLobbyId, setShowInputLobbyId] = useState(true);
+  const [lobbyIdValue, setLobbyIdValue] = useState('');
 
+  let addLobbyId = useAuthStore((state) => state.addLobbyId);
+
+  const router = useRouter();
   const lobbyEntryRequest = async () => {
-    const {userName, lobbyId} = form.values;
-    const data = await httpInstance.post('/auth', {
-      lobbyId: lobbyId,
-      userName: userName
-    });
+    try {
+      const { userName, lobbyId } = form.values;
+      const response = await AuthApiModule.createLobbyAndLogin({ lobbyId: lobbyId, userName: userName });
+      const { token } = response.data;
+
+      addLobbyId(lobbyId);
+
+      if (showInputLobbyId) {
+        if (form.isValid()) {
+          localStorage.setItem('token', JSON.stringify(token));
+    
+          router.push('/lobby');
+        }
+      } else {
+        if (form.isValid('userName')) {
+          localStorage.setItem('token', JSON.stringify(token));
+         
+          router.push('/lobby');
+        }
+      };
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   const form = useForm({
-    validateInputOnChange: true,
+    validateInputOnBlur: true,
     initialValues: {
       userName: '',
-      lobbyId: ''
+      lobbyId: lobbyIdValue
     },
     validate: {
       userName: (value) => (value.length === 0 
@@ -43,9 +68,17 @@ export default function AuthPage() {
                               ? 'Имя не может содержать более 15 символов'
                               : null
                             ),
-      lobbyId: (value) => (/[a-zA-Z]+/.test(value) && value.length === 5 ? null : 'Идентификатор лобби состоит из 5 символов в диапазоне a-Z'),
+      lobbyId: hasLength(5)
     }
   });
+
+  const setAndValidateLobbyId = (event: any) => {
+    event.target.maxLength = 5;
+    const value = event.currentTarget.value.toUpperCase();
+
+    setLobbyIdValue(value);
+    form.setValues({lobbyId: value});
+  };
 
   return (
     <>
@@ -70,13 +103,14 @@ export default function AuthPage() {
                   {...form.getInputProps('userName')}
                 />
 
-                {showComponent && 
+                {showInputLobbyId && 
                 <TextInput
                   variant="underline"
                   size={mobileScreen ? 'xs' : 'md'}
                   placeholder="Ввведите идентификатор лобби"
                   withErrorStyles={false}
-                  {...form.getInputProps('lobbyId')}
+                  value={lobbyIdValue}
+                  onChange={setAndValidateLobbyId}
                 />}
 
                 <Button
@@ -86,7 +120,8 @@ export default function AuthPage() {
                   size={mobileScreen ? 'xs' : 'lg'}
                   type="submit"
                   onClick={()=> lobbyEntryRequest()}
-                >{showComponent ? "Прыгнуть в игру" : "Создать лобби"}</Button>
+                  disabled={showInputLobbyId ? !form.isValid() : !form.isValid('userName')}
+                >{showInputLobbyId ? "Прыгнуть в игру" : "Создать лобби"}</Button>
               </MantineProvider>
 
               <div>Или
@@ -95,8 +130,8 @@ export default function AuthPage() {
                   color={variables.authButtonTransparent}
                   variant="transparent"
                   size="compact-md"
-                  onClick={() => setShowComponent(!showComponent)}
-                >{showComponent ? "создайте лобби" : "прыгнуть в игру"}</Button>
+                  onClick={() => setShowInputLobbyId(!showInputLobbyId)}
+                >{showInputLobbyId ? "создайте лобби" : "прыгнуть в игру"}</Button>
               </div>
             </Box>
           </div>

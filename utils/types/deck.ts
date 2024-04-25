@@ -1,9 +1,11 @@
+import { Card } from '@utils/types/card'
+
 export type Deck = {
-	cards: any[];
-	id: string;
-	name: string;
+    id: string;
+    name: string;
+	cards: Card[];
+    description: string;
 	code: string;
-	description: string;
-	deckOwner: number;
+	deckOwner: string;
 	cardsTotal: number;
 }

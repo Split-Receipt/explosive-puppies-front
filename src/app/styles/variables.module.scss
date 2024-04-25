@@ -1,7 +1,11 @@
 // Colors
+$aquamarine-crayola: #0c8599;
+$aquamarine-blue: #59c5f6;
+$aquamarine-green: #88d7c8;
 $transparent: transparent;
 $black: #000;
 $white: #fff;
+$mine-shaft: #383838;
 $aquamarine-crayola: #6ae4cd;
 $downy: #5fcdb9;
 $malibu: #59c5f6;
@@ -20,13 +24,22 @@ $auth-button-transparent-text-hover: $downy;
 $auth-title-red: $red-orange;
 $auth-title-yellow: $yellow-orange;
 
+$lobby-button-primary-bg: $aquamarine-crayola;
+$lobby-info: $mine-shaft;
+$lobby-code-border: $aquamarine-crayola;
+
 $deck-bg: $malibu;
 
 :export {
     authButtonPrimary: $auth-button-primary-bg;
     authButtonTransparent: $auth-button-transparent;
+    lobbyButtonPrimary: $lobby-button-primary-bg;
 }
 
 // Breakpoints
 $screen-tablet: '(min-width: 768px)';
 $screen-desktop: '(min-width: 1440px)';
+
+// Components
+$kubick-blue: $aquamarine-blue;
+$border-kub: $aquamarine-green;
