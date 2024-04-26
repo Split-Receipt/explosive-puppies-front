@@ -1,11 +1,12 @@
-import { Card } from '@utils/types/card'
+import { Card } from '@utils/types/index';
 
 export type Deck = {
-    id: string;
-    name: string;
+  id: string;
+  name: string;
 	cards: Card[];
-    description: string;
+  description: string;
 	code: string;
-	deckOwner: string;
+	deckOwner?: string;
 	cardsTotal: number;
+	showComponent?: boolean;
 }
