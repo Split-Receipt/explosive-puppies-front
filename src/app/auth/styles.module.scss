@@ -1,0 +1,109 @@
+@use '@/app/styles/variables.module.scss' as *;
+
+.auth {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+
+    width: 500px;
+
+    @media #{$screen-tablet} {
+        gap: 200px;
+    }
+
+    &Wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin-top: 30px;
+    }
+
+    &Title {
+        font-size: 30px;
+        text-align: center;
+
+        margin: 0 20px;
+
+        @media (min-width: 768px) {
+            font-size: 45px;
+        }
+
+        &Color {
+            color: transparent;
+            background-clip: text;
+            background-image: linear-gradient($auth-title-yellow, $auth-title-red);
+        }
+    }
+
+    &Content {
+        margin: 0 20px;
+        padding: 20px 0;
+        border: 3px solid $auth-border;
+
+        &Wrapper {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            gap: 25px;
+    
+            width: 60%;
+            margin: 0 auto;
+        }
+    }
+
+    &Button {
+        &Transparent {
+            font-weight: 500;
+
+            padding: 0 0 1px 5px;
+
+            &:hover {
+                color: $auth-button-transparent-text-hover;
+            }
+        }
+    }
+
+    &Link {
+        color: $auth-link-text;
+    }
+}
+
+.root {
+    &[data-variant="buttonPrimary"] {
+        background-color: $auth-button-primary-bg;
+        color: $auth-button-text;
+        font-weight: 500;
+
+        &:hover {
+            background-color: $auth-button-primary-bg-hover;
+        }
+
+        &:disabled,
+        &[data-disabled] {
+            opacity: 0.5;
+        }
+    }
+}
+
+.input {
+    &[data-variant='underline'] {
+        text-align: center;
+
+        border: none;
+        border-bottom: 2px solid $auth-input-border;
+        border-radius: 0;
+        padding-left: 0;
+        padding-right: 0;
+
+        text-overflow: ellipsis;
+        
+        &:placeholder-shown {
+            text-overflow: ellipsis;
+        }
+
+        &:focus {
+            border-bottom: 2px solid $auth-input-underline-focus;
+        }
+    }
+}
