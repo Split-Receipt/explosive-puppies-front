@@ -1,0 +1,14 @@
+@use '@/app/styles/variables.module.scss' as *;
+
+.card {
+    height: 150px;
+    width: 100px;
+    margin: 20px; 
+    background-color: skyblue;
+    border: 2px solid $aquamarine-green;
+    border-radius: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
