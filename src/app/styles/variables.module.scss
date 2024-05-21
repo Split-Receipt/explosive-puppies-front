@@ -8,6 +8,7 @@ $white: #fff;
 $mine-shaft: #383838;
 $aquamarine-crayola: #6ae4cd;
 $downy: #5fcdb9;
+$malibu: #59c5f6;
 $yellow-orange: #fdbc3b;
 $red-orange: #fc401e;
 
@@ -26,6 +27,8 @@ $auth-title-yellow: $yellow-orange;
 $lobby-button-primary-bg: $aquamarine-crayola;
 $lobby-info: $mine-shaft;
 $lobby-code-border: $aquamarine-crayola;
+
+$deck-bg: $malibu;
 
 :export {
     authButtonPrimary: $auth-button-primary-bg;
