@@ -2,13 +2,13 @@ import { create } from 'zustand';
 
 interface LobbyState {
     id: string;
-    addIdGame: (id : string) => void;
+    addGameId: (id : string) => void;
 };
 
 const useLobbyStore = create<LobbyState>((set) => ({
     id: '',
 
-    addIdGame: (id : string) => set(state => (
+    addGameId: (id : string) => set(state => (
         {
             id: id
         }
