@@ -1,3 +1,5 @@
+"use client"
+
 import styles from '@/app/components/deck/deck.module.scss';
 import { useDeckStore } from '@/app/store/decks';
 import { useShallow } from 'zustand/react/shallow';
