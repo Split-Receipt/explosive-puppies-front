@@ -10,6 +10,7 @@ $aquamarine-crayola: #6ae4cd;
 $downy: #5fcdb9;
 $yellow-orange: #fdbc3b;
 $red-orange: #fc401e;
+$skyblue: #87ceeb;
 
 $auth-border: $aquamarine-crayola;
 $auth-input-border: $black;
@@ -26,6 +27,9 @@ $auth-title-yellow: $yellow-orange;
 $lobby-button-primary-bg: $aquamarine-crayola;
 $lobby-info: $mine-shaft;
 $lobby-code-border: $aquamarine-crayola;
+
+$game-card-border: $aquamarine-green;
+$game-card-background: $skyblue;
 
 :export {
     authButtonPrimary: $auth-button-primary-bg;
