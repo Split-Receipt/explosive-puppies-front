@@ -15,14 +15,14 @@ export default function BaseDeck() {
 			name: state.generalDeck!.name,
 			code: state.generalDeck!.code,
 			description: state.generalDeck!.description,
-			cardsTotal: state.generalDeck!.cardsTotal
+			cardsTotal: state.generalDeck!.cardsTotal,
 		})),
 	);
 
 	function issuingCardsHandler() {
 		takeСardFromDeck('generalDeck', 1);
 		newCardsTotal('generalDeck', newCards);
-	};
+	}
 
 	return (
 		<>
@@ -36,6 +36,6 @@ export default function BaseDeck() {
 			>
 				<div className={styles.deckCardCount}>{cardsTotal}</div>
 			</div>
-	</>
+		</>
 	);
-};
+}
