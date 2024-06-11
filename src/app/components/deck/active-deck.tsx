@@ -21,11 +21,11 @@ export default function ActiveDeck() {
 
 	function lastCard() {
 		return newCards![newCards!.length -1];
-	};
+	}
 
 	return (
 		<>
-		{showComponent &&
+			{showComponent &&
 			<div
 				className={styles.deck}
 				onClick={lastCard}
@@ -36,7 +36,7 @@ export default function ActiveDeck() {
 			>
 				<div className={styles.deckCardCount}>{!newCards.length ? null : newCards[newCards.length -1].name}</div>
 			</div>
-		}
-	</>
+			}
+		</>
 	);
-};
+}

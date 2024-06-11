@@ -12,7 +12,7 @@ interface DeckState {
 	setCardsTotal?: (deckType: string, newCards: any[]) => void;
 	spreadCards: (deckType: string, cardsAmount: number) => void;
 	cardsReset: (deckType: string) => void;
-};
+}
 
 export const useDeckStore = create<DeckState>((set) => ({
 	playerDeck: {
@@ -50,21 +50,21 @@ export const useDeckStore = create<DeckState>((set) => ({
 		showComponent: false,
 	},
 
-  addCards: (deckType: keyof DeckState, newCards: any[]) => set((state) => (
-			{
-				[deckType]: {
-					...state[deckType],
-					cards: [...state[deckType]!.cards, ...newCards]
-				}
-			}
+	addCards: (deckType: keyof DeckState, newCards: any[]) => set((state) => (
+		{
+			[deckType]: {
+				...state[deckType],
+				cards: [...state[deckType]!.cards, ...newCards],
+			},
+		}
 	)),
 
 	setCardsTotal: (deckType: string, newCards: any[]) => set((state) => (
 		{
 			[deckType]: {
 				...state[deckType],
-				cardsTotal: newCards.length
-			}
+				cardsTotal: newCards.length,
+			},
 		}
 	)),
 
@@ -72,7 +72,7 @@ export const useDeckStore = create<DeckState>((set) => ({
 		{
 			[deckType]: {
 				...state[deckType],
-				showComponent: !newCards.length ? false : true
+				showComponent: !newCards.length ? false : true,
 			},
 		}
 	)),
@@ -82,7 +82,7 @@ export const useDeckStore = create<DeckState>((set) => ({
 	}),
 
 	cardsReset: (deckType: string) => set((state) => {
-		return state[deckType].cards.splice(0, state[deckType].cards.length)
-	})
+		return state[deckType].cards.splice(0, state[deckType].cards.length);
+	}),
 
 }));

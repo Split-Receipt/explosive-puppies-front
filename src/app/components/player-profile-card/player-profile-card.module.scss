@@ -1,9 +1,9 @@
 @use '@/app/styles/variables.module.scss' as *;
 
 .player {
-    display: flex;
-    border: 2px solid $border-kub;
-    align-items: center;
+        display: flex;
+        border: 2px solid $border-lobby-player;
+        align-items: center;
 
     &Horizontal {
         padding: 5px;
@@ -18,7 +18,7 @@
 
     &Img {
         display: flex;
-        background-color: $kubick-blue;
+        background-color: $avatar-lobby;
         width: 70px;
         height: 70px;
 

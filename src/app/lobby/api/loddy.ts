@@ -1,5 +1,5 @@
 import api from '@utils/api';
-import { CreateGameParams, GameResponse } from '@utils/types/index';
+import { CreateGameParams, CreateGameResponse } from '@utils/types/index';
 import { AxiosResponse } from 'axios';
 
 export const GameCreateApiModule = {
@@ -11,9 +11,9 @@ export const GameCreateApiModule = {
    * const {  } =  await GameCreateApiModule.createGame({ players: ['test'], lobbyId: 'test' })
    *
    * @param {CreateGameParams} params - Параметры для создания игры
-   * @return {Promise<GameResponse>} Ответ, содержащий информацию об игре
+   * @return {Promise<CreateGameResponse>} Ответ, содержащий информацию об игре
    */
-	createGame: (params: CreateGameParams): Promise<AxiosResponse<GameResponse>> => {
-		return api.post('/game', params);
+	createGame: (params: CreateGameParams): Promise<AxiosResponse<CreateGameResponse>> => {
+		return api.post('/game/create', params);
 	},
 };

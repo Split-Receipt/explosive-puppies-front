@@ -15,7 +15,7 @@ export default function PlayerDeck() {
 			code: state.playerDeck!.code,
 			description: state.playerDeck!.description,
 			deckOwner: state.playerDeck!.deckOwner,
-			cardsTotal: state.playerDeck!.cardsTotal
+			cardsTotal: state.playerDeck!.cardsTotal,
 		})),
 	);
 
@@ -31,6 +31,6 @@ export default function PlayerDeck() {
 			>
 				<div className={styles.deckCardCount}>{cardsTotal}</div>
 			</div>
-	</>
+		</>
 	);
-};
+}

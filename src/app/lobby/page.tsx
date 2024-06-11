@@ -24,15 +24,15 @@ const players = [
 const lobbyId = '';
 
 export default function LobbyPage() {
-	let addIdGame = useLobbyStore((state) => state.addIdGame);
+	let addIdGame = useLobbyStore((state) => state.addGameId);
 
 	const router = useRouter();
 
 	const createGameRequest = async () => {
 		try {
 			const response = await GameCreateApiModule.createGame({ players: players, lobbyId: lobbyId });
-			const { id } = response.data;
-			addIdGame(id);
+			const { gameId } = response.data;
+			addIdGame(gameId);
 
 			router.push('/game');
 		} catch (error) {
