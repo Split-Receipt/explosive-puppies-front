@@ -27,8 +27,8 @@ export default function BeatenDeck() {
 				code-attribute={code}
 				description-attribute={description}
 			>
-				<div className={styles.deckCardCount}>{cardsTotal == 0 ? 'Бито' : cardsTotal}</div>
+				<div className={styles.deckCardCount}>{cardsTotal === 0 ? 'Бито' : cardsTotal}</div>
 			</div>
-	</>
+		</>
 	);
-};
+}

@@ -34,16 +34,15 @@ $deck-bg: $malibu;
 $game-card-border: $aquamarine-green;
 $game-card-background: $skyblue;
 
+$avatar-lobby: $aquamarine-blue;
+$border-lobby-player: $aquamarine-green;
+
 :export {
-    authButtonPrimary: $auth-button-primary-bg;
-    authButtonTransparent: $auth-button-transparent;
-    lobbyButtonPrimary: $lobby-button-primary-bg;
+	authButtonPrimary: $auth-button-primary-bg;
+	authButtonTransparent: $auth-button-transparent;
+	lobbyButtonPrimary: $lobby-button-primary-bg;
 }
 
 // Breakpoints
 $screen-tablet: '(min-width: 768px)';
 $screen-desktop: '(min-width: 1440px)';
-
-// Components
-$kubick-blue: $aquamarine-blue;
-$border-kub: $aquamarine-green;
