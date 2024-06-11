@@ -35,16 +35,16 @@ export default function AuthPage() {
 
 			addLobbyId(lobbyId);
 
+			const responseLobbyData = await AuthApiModule.getLobbyById({ lobbyId: lobbyId, playerId: '' });//TODO Поставить playerId
+
 			if (showInputLobbyId) {
 				if (form.isValid()) {
 					localStorage.setItem('token', JSON.stringify(token));
-
 					router.push('/lobby');
 				}
 			} else {
 				if (form.isValid('userName')) {
 					localStorage.setItem('token', JSON.stringify(token));
-
 					router.push('/lobby');
 				}
 			}
@@ -92,7 +92,7 @@ export default function AuthPage() {
 						<Box
 							component="form"
 							className={styles.authContentWrapper}
-							onSubmit={form.onSubmit(() => {})}
+							onSubmit={form.onSubmit(() => console.warn('Поставить нормальную функцию'))}
 						>
 							<MantineProvider theme={theme}>
 								<TextInput
@@ -135,7 +135,6 @@ export default function AuthPage() {
 							</div>
 						</Box>
 					</div>
-
 				</div>
 			</div>
 		</>
