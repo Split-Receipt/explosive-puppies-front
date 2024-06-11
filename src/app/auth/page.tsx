@@ -20,7 +20,7 @@ const theme = createTheme({
 
 export default function AuthPage() {
 	const mobileScreen = useMediaQuery(`(max-width: ${em(768)})`);
-  
+
 	const [showInputLobbyId, setShowInputLobbyId] = useState(true);
 	const [lobbyIdValue, setLobbyIdValue] = useState('');
 
@@ -35,16 +35,16 @@ export default function AuthPage() {
 
 			addLobbyId(lobbyId);
 
+			const responseLobbyData = await AuthApiModule.getLobbyById({ lobbyId: lobbyId, playerId: '' });//TODO Поставить playerId
+
 			if (showInputLobbyId) {
 				if (form.isValid()) {
 					localStorage.setItem('token', JSON.stringify(token));
-    
 					router.push('/lobby');
 				}
 			} else {
 				if (form.isValid('userName')) {
 					localStorage.setItem('token', JSON.stringify(token));
-         
 					router.push('/lobby');
 				}
 			}
@@ -60,7 +60,7 @@ export default function AuthPage() {
 			lobbyId: lobbyIdValue,
 		},
 		validate: {
-			userName: (value) => (value.length === 0 
+			userName: (value) => (value.length === 0
 				? 'Пожалуйста, введите имя'
 				: value.length < 2
 					? 'Ваше имя слишком короткое'
@@ -92,7 +92,7 @@ export default function AuthPage() {
 						<Box
 							component="form"
 							className={styles.authContentWrapper}
-							onSubmit={form.onSubmit(() => {})}
+							onSubmit={form.onSubmit(() => console.warn('Поставить нормальную функцию'))}
 						>
 							<MantineProvider theme={theme}>
 								<TextInput
@@ -103,7 +103,7 @@ export default function AuthPage() {
 									{...form.getInputProps('userName')}
 								/>
 
-								{showInputLobbyId && 
+								{showInputLobbyId &&
 									<TextInput
 										variant="underline"
 										size={mobileScreen ? 'xs' : 'md'}
@@ -135,9 +135,8 @@ export default function AuthPage() {
 							</div>
 						</Box>
 					</div>
-          
 				</div>
 			</div>
-		</>      
+		</>
 	);
 }
